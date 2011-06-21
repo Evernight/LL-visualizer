@@ -1,0 +1,115 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="description" content="LL grammar parser" />
+	<title>
+		Визуализация анализаторов грамматик
+	</title>
+	<link rel="stylesheet" type="text/css" href="style.css" />
+	<!-- <link rel="stylesheet" type="text/css" href="Spacetree.css" /> -->
+	<link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+
+	<script type="text/javascript" src="jquery.js"></script>
+	<script type="text/javascript" src="jit.js"></script>
+	<script type="text/javascript" src="tree.js"></script>
+	<script type="text/javascript" src="ui.js"></script>
+	<script type="text/javascript" src="ll_parser.js"></script>
+
+</head>
+<body>
+	<div id="wrapper">
+	<div id="main_title">
+		<h1>Синтаксические анализаторы</h1>
+	</div>
+	<div id="left_panel">
+		<div id ="task">
+			<h2>Задача:</h2>
+			<p>По заданной грамматике построить дерево разбора для заданной цепочки или определить, что она не принадлежит определяемому грамматикой языку.</p>
+			<a href="#">Подробное описание</a>
+		</div>
+		<div id="grammar_panel">
+			<h2>Грамматика:</h2>
+			<textarea id="grammar_edit" readonly="readonly">
+S ::= E
+E ::= (ARA)
+A ::= E | p
+R ::= + | - | * | /
+			</textarea><br />
+			<a id="grammar_edit_link" href="#">изменить</a>
+			<input id="grammar_save_btn" type="button" value="Сохранить"/>
+			<input id="grammar_cancel_btn" type="button" value="Отмена" />
+		</div>
+		<div id="error_panel">
+		</div>
+		
+	</div>
+
+	<div id="main">
+		<div id ="title">
+			<h2>Анализатор LL(1)</h2>
+		</div>
+		<div id="chain_panel">
+			Анализируемая цепочка: <span id="chain">(((p + p) * p) - (p / (p + p)))</span> (<a id="chain_edit_link" href="#">изменить</a>) <br />
+			<div id="chain_edit_block">
+				<input type="text" id="chain_edit" /><br />
+				<a id="chain_save" href="#">сохранить</a>
+			</div>
+		</div>
+		<div id="process"><div>
+				<h3>Шаг <span id="cur_step">0</span></h3>
+				<table class="steps">
+					<tr><th>Предыдущий шаг:</th></tr>
+					<tr><td>
+						Входная лента: <span id="old_chain"></span><br/>
+						Стек: <span id="old_stack"></span>
+					</td></tr>
+					<tr><th>Текущий шаг:</th></tr>
+					<tr><td>
+						Входная лента: <span id="cur_chain"></span><br/>
+						Стек: <span id="cur_stack"></span>
+					</td></tr>
+				</table><br/>
+		</div></div>
+		<div class="section_container">
+		<div class="section">
+			<ul class="tabs">
+				<li>дерево</li>
+				<li>вывод</li>
+				<li class="current">правила</li>
+				<li>таблица</li>
+			</ul>
+			<div class="box">
+				[--Not implemented--]
+				<div id="tree"></div>
+			</div>
+			<div class="box" id="left_output">
+				Здесь показывается <a href="#">левосторонний вывод</a>, полученный при работе алгоритма.<br/>
+				[--Not implemented--]
+			</div>
+			<div class="box visible" id="rules_list">
+				
+			</div>
+			<div class="box" id="parse_table">
+				Это служебная таблица, используемая при работе алгоритма.<br/>
+				[--Not implemented--]
+			</div>			
+		</div>
+		</div>
+	</div>
+	<div id="down_panel">		
+		<div id="description"><div>
+			<div><h3>Описание:</h3></div>
+			<div></div>
+		</div></div>
+		<div id ="control">
+			<input id="firstBtn" type="button" value="<< Сначала"/>
+			<input id="prevBtn" type="button" value=" < Предыдущий шаг" />
+			<input id="autoBtn" type="button" value="[ Автоматически ]"/>
+			<input id="nextBtn" type="button" value="Следующий шаг >" />
+			<input id="lastBtn" type="button" value="К концу >>"/>
+		</div>
+	</div>
+	</div>
+</body>
+</html>
